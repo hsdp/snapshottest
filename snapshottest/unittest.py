@@ -78,6 +78,8 @@ class TestCase(unittest.TestCase):
     def tearDownClass(cls):
         if cls._snapshot_tests:
             module = SnapshotModule.get_module_for_testpath(cls._snapshot_file)
+            if cls.snapshot_should_update:
+                module.delete_unvisited()
             module.save()
         super(TestCase, cls).tearDownClass()
 
