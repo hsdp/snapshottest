@@ -142,7 +142,7 @@ class SnapshotModule(object):
         with open(self.filepath, 'w', encoding='utf-8') as snapshot_file:
             snapshots_declarations = []
             for key, value in self.snapshots.items():
-                snapshots_declarations.append('''snapshots['{}'] = {}'''.format(key, pretty(value)))
+                snapshots_declarations.append('''snapshots[{}] = {}'''.format(repr(key), pretty(value)))
 
             imports = '\n'.join([
                 'from {} import {}'.format(module, ', '.join(sorted(module_imports)))
